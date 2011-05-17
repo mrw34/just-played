@@ -1,0 +1,11 @@
+{ "nowplaying": [
+
+{ "artist_gid": "b9472588-93f3-4922-a1a2-74082cdf9ce8", "artist": "Panic! at the Disco", "title": "The Ballad Of Mona Lisa", "image": "http://www.bbc.co.uk/radio1/images/packshots/panicatthedisco-theballadofmonalisa.jpg", "playlist": "http://www.bbc.co.uk/programmes/p00fhsvl.emp" },
+{ "artist_gid": "", "artist": "Chris Brown and Benny Benassi", "title": "Beautiful People" },
+{ "artist_gid": "312183e0-64ff-48df-a9f4-0804ca23a7d3", "artist": "Jai Paul", "title": "BTSTU", "image": "http://www.bbc.co.uk/radio1/images/packshots/jaipaul-btstu.jpg", "playlist": "http://www.bbc.co.uk/programmes/p00gqr97.emp" },
+{ "artist_gid": "6f1de078-6684-4792-820d-2ffad64c15ed", "artist": "Two Door Cinema Club", "title": "Something Good Can Work", "playlist": "http://www.bbc.co.uk/programmes/p00fytjk.emp" },
+{ "artist_gid": "70e6fee5-36b1-4cdb-b573-2132f9566dad", "artist": "Alexandra Stan", "title": "Mr Saxobeat", "image": "http://www.bbc.co.uk/radio1/images/packshots/alexandrastan-mrsaxobeat.jpg", "playlist": "http://www.bbc.co.uk/programmes/p00gph0j.emp" },
+{ "artist_gid": "e3fb5bd1-0b1a-44c5-8523-da2cfef5d69f", "artist": "Yasmin", "title": "Finish Line", "image": "http://www.bbc.co.uk/radio1/images/packshots/yasmin-finishline.jpg", "playlist": "http://www.bbc.co.uk/programmes/p00dy22k.emp" },
+{ "artist_gid": "", "artist": "Wretch 32 and Example", "title": "Unorthodox" },
+{ "artist_gid": "", "artist": "Jessie J and B.O.B.", "title": "Price Tag" }
+]}
