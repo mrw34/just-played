@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,48 +26,46 @@ import com.google.appengine.api.memcache.stdimpl.GCacheFactory;
 public class JustplayedServlet extends HttpServlet {
 	private Cache cache;
 	//String TEMPLATE = "http://www.bbc.co.uk/%s/nowplaying/latest.json";
-	String TEMPLATE = "http://just-played.appspot.com/latest/%s.json";
-	Map networks;
+	//String TEMPLATE = "http://just-played.appspot.com/json/%s.json";//TODO
+	String TEMPLATE = "http://localhost:8888/json/%s.json";
+	List networksTemplate;
+	private static final String NETWORKS = "networks";
 
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		try {
 			Map props = new HashMap();
-			props.put(GCacheFactory.EXPIRATION_DELTA, 60 * 2);
+			props.put(GCacheFactory.EXPIRATION_DELTA, 60 * 1);
 			cache = CacheManager.getInstance().getCacheFactory().createCache(props);
 		} catch (CacheException e) {
 			throw new ServletException(e);
 		}
 		try {
-			networks = (Map) JSONValue.parse(new FileReader("networks.json"));
+			networksTemplate = (List) JSONValue.parse(new FileReader("json/networks.json"));
 		} catch (FileNotFoundException e) {
 			throw new ServletException(e);
 		}
 	}
-	
+
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)	throws IOException {
-		if ("/recache".equals(req.getPathInfo())) {
-			recache("radio2");//TODO
-		} else {
-			String network = req.getParameter("q");
-			if (network == null) {
-				return;
+		System.out.println(req.getPathInfo());
+		if ("/networks.json".equals(req.getPathInfo())) {
+			List<Map> networks;
+			if (cache.containsKey(NETWORKS)) {
+				networks = (List) cache.get(NETWORKS);
+			} else {
+				networks = networksTemplate;
+				for (Map network : networks) {
+					URL url = new URL(String.format(TEMPLATE, network.get("id")));
+					Map latest = (Map) JSONValue.parse(new InputStreamReader(url.openStream()));
+					List nowplaying = latest.containsKey("nowplaying") ? (List) latest.get("nowplaying") : Collections.EMPTY_LIST;
+					network.put("nowplaying", nowplaying);
+				}
+				cache.put(NETWORKS, networks);
 			}
-			List<Map<String, String>> nowplaying = cache.containsKey(network) ? (List) cache.get(network) : recache(network);
-			resp.setContentType("text/plain");
-			for (Map<String, String> track : nowplaying) {
-				resp.getWriter().println(track.get("artist") + " - " + track.get("title"));
-			}
+			resp.setContentType("application/json");
+			resp.getWriter().println(JSONValue.toJSONString(networks));
 		}
-	}
-	
-	private List recache(String network) throws IOException {
-		System.out.println(network);//TODO
-		URL url = new URL(String.format(TEMPLATE, network));
-		Map latest = (Map) JSONValue.parse(new InputStreamReader(url.openStream()));
-		List nowplaying = latest.containsKey("nowplaying") ? (List) latest.get("nowplaying") : (List) cache.get(network);
-		cache.put(network, nowplaying);
-		return nowplaying;
 	}
 }
