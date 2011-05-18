@@ -5,34 +5,70 @@
 <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
 <script>
 $(function() {
-  $.getJSON('networks.json', function(data) {
-    var items = [];
-    $.each(data, function(key, val) {
-      items.push('<li><img src="' + key + '.gif"><a href="#' + key + '">' + val + '</a></li>');
+  $.getJSON('justplayed/networks.json', function(data) {
+    var networks = [];
+    $.each(data, function(i, network) {
+      networks.push('<li>'
+      	+ (network.nowplaying.length ? ('<a href="' + network.id + '">') : '')
+      	+ '<img src="' + network.image + '">'
+      	+ '<h1>' + network.title + '</h1>'
+      	+ '<p>' + network.nowplaying.length + ' recent tracks</p>'
+      	+ (network.nowplaying.length ? '</a>' : '')
+      	+ '</li>');
+      var tracks = [];
+      $.each(network.nowplaying, function(j, track) {
+        tracks.push('<li><a href="http://m.7digital.com/GB/search/tracks?q=' + encodeURIComponent(track.title) + '"><img src="' + (track.image ? track.image : 'img/cd.gif') + '"><h1>' + track.title + '</h1><p>' + track.artist + '</p></a></li>');
+      });
+      $('#' + network.id + ' ul').html(tracks.join('')).listview();
     });
-    $('ul').html(items.join('')).listview();
+    $('#home ul').html(networks.join('')).listview();
   });
 });
 </script>
-<div data-role="page" id="home" data-theme="b">
-  <div data-role="header">
-    <h1>Just Played</h1>
+<body> 
+  <div data-role="page" id="home" data-theme="b">
+    <div data-role="header">
+      <h1>Just Played</h1>
+    </div>
+    <div data-role="content">
+      <ul id="networks" data-role='list-view' data-inset='true'></ul>
+    </div>
+    <!--
+    <div data-role="footer">
+      <h4>Page Footer</h4>
+    </div>
+    -->
   </div>
-  <div id="content" data-role="content">
-    <ul data-role='list-view' data-inset='true'></ul>
-    <p><a href="#about">About this app</a></p>    
+  <div data-role="page" id="radio1" data-theme="b">
+    <div data-role="header">
+      <h1>BBC Radio 1</h1>
+    </div>
+    <div data-role="content">
+      <ul data-role='list-view'></ul>
+    </div>
   </div>
-  <!--
-  <div data-role="footer">
-    <h4>Page Footer</h4>
+  <div data-role="page" id="1xtra" data-theme="b">
+    <div data-role="header">
+      <h1>BBC Radio 1Xtra</h1>
+    </div>
+    <div data-role="content">
+      <ul data-role='list-view'></ul>
+    </div>
   </div>
-  -->
-</div>
-<div data-role="page" id="about" data-theme="b">
-  <div data-role="header">
-    <h1>About This App</h1>
+  <div data-role="page" id="radio2" data-theme="b">
+    <div data-role="header">
+      <h1>BBC Radio 2</h1>
+    </div>
+    <div data-role="content">
+      <ul data-role='list-view'></ul>
+    </div>
   </div>
-  <div data-role="content"> 
-    <p>This app rocks! <a href="#home">Go home</a></p>    
+  <div data-role="page" id="6music" data-theme="b">
+    <div data-role="header">
+      <h1>BBC 6 Music</h1>
+    </div>
+    <div data-role="content">
+      <ul data-role='list-view'></ul>
+    </div>
   </div>
-</div>
+</body>
