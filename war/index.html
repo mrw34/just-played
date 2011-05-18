@@ -5,7 +5,7 @@
 <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
 <script>
 $(function() {
-  $.getJSON('justplayed/networks.json', function(data) {
+  $.getJSON('justplayed/networks', function(data) {
     var networks = [];
     $.each(data, function(i, network) {
       networks.push('<li>'
@@ -17,7 +17,15 @@ $(function() {
       	+ '</li>');
       var tracks = [];
       $.each(network.nowplaying, function(j, track) {
-        tracks.push('<li><a href="http://m.7digital.com/GB/search/tracks?q=' + encodeURIComponent(track.title) + '"><img src="' + (track.image ? track.image : 'img/cd.gif') + '"><h1>' + track.title + '</h1><p>' + track.artist + '</p></a></li>');
+        tracks.push('<li data-icon="false">'
+          //+ '<a href="http://m.7digital.com/GB/search/tracks?q=' + encodeURIComponent(track.title) + '">'
+          + '<a href="justplayed/purchase?title=' + encodeURIComponent(track.title) + '&artist=' + encodeURIComponent(track.artist) + '" data-ajax="false">'
+          + '<img src="' + (track.image ? track.image : 'img/cd.gif') + '">'
+          + '<h1>' + track.title + '</h1>'
+          + '<p>' + track.artist + '</p>'
+          + '</a>'
+          + (track.playlist ? ('<a href="justplayed/preview?playlist=' + encodeURIComponent(track.playlist) + '" data-ajax="false">Preview track</a>') : '')
+          + '</li>');
       });
       $('#' + network.id + ' ul').html(tracks.join('')).listview();
     });
@@ -28,6 +36,7 @@ $(function() {
 <body> 
   <div data-role="page" id="home" data-theme="b">
     <div data-role="header">
+      <a href="help" data-icon="info" data-iconpos="notext" class="ui-btn-right" data-rel="dialog">Help</a>
       <h1>Just Played</h1>
     </div>
     <div data-role="content">
@@ -41,6 +50,7 @@ $(function() {
   </div>
   <div data-role="page" id="radio1" data-theme="b">
     <div data-role="header">
+      <a href="home" data-icon="home" data-iconpos="notext" class="ui-btn-right">Home</a>
       <h1>BBC Radio 1</h1>
     </div>
     <div data-role="content">
@@ -49,6 +59,7 @@ $(function() {
   </div>
   <div data-role="page" id="1xtra" data-theme="b">
     <div data-role="header">
+      <a href="home" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
       <h1>BBC Radio 1Xtra</h1>
     </div>
     <div data-role="content">
@@ -57,6 +68,7 @@ $(function() {
   </div>
   <div data-role="page" id="radio2" data-theme="b">
     <div data-role="header">
+      <a href="home" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
       <h1>BBC Radio 2</h1>
     </div>
     <div data-role="content">
@@ -65,10 +77,21 @@ $(function() {
   </div>
   <div data-role="page" id="6music" data-theme="b">
     <div data-role="header">
+      <a href="home" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
       <h1>BBC 6 Music</h1>
     </div>
     <div data-role="content">
       <ul data-role='list-view'></ul>
+    </div>
+  </div>
+  <div data-role="page" id="help">
+    <div data-role="header" data-theme="b">
+      <h1>Help</h1>
+    </div>
+    <div data-role="content" data-theme="b">
+      <p><b>Just Played</b> shows you the latest tracks played on the BBC's music radio stations
+      <p>You can check whether the track is the one you wanted using the preview (where available) to the right of the track name
+      <p>Click the track name to visit 7digital's site, where you can buy the track
     </div>
   </div>
 </body>

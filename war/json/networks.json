@@ -2,7 +2,7 @@
     {
         "id": "radio1",
         "title": "BBC Radio 1",
-        "image": "/img2/radio1.gif",
+        "image": "/img/radio1.gif",
         "nowplaying": [
             {
                 "artist_gid": "b9472588-93f3-4922-a1a2-74082cdf9ce8",
@@ -58,7 +58,7 @@
     {
         "id": "1xtra",
         "title": "BBC Radio 1Xtra",
-        "image": "/img2/1xtra.gif",
+        "image": "/img/1xtra.gif",
         "nowplaying": [
             {
                 "artist_gid": "",
@@ -114,7 +114,7 @@
     {
         "id": "radio2",
         "title": "BBC Radio 2",
-        "image": "/img2/radio2.gif",
+        "image": "/img/radio2.gif",
         "nowplaying": [
             {
                 "artist_gid": "b9472588-93f3-4922-a1a2-74082cdf9ce8",
@@ -170,7 +170,7 @@
     {
         "id": "6music",
         "title": "BBC 6 Music",
-        "image": "/img2/6music.gif",
+        "image": "/img/6music.gif",
         "nowplaying": [
             {
                 "artist_gid": "ef11dd9b-4557-4fc5-b0e2-a431c5cfddbb",
