@@ -4,7 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.StringWriter;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -17,17 +19,23 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPathFactory;
 
 import org.json.simple.JSONValue;
+import org.w3c.dom.Document;
 
 import com.google.appengine.api.memcache.stdimpl.GCacheFactory;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "rawtypes", "unchecked"})
 public class JustplayedServlet extends HttpServlet {
 	private Cache cache;
-	//String TEMPLATE = "http://www.bbc.co.uk/%s/nowplaying/latest.json";
-	//String TEMPLATE = "http://just-played.appspot.com/json/%s.json";//TODO
-	String TEMPLATE = "http://localhost:8888/json/%s.json";
+	String TEMPLATE = "http://www.bbc.co.uk/%s/nowplaying/latest.json";
+	//String TEMPLATE = "http://just-played.appspot.com/json/%s.json";
+	//String TEMPLATE = "http://localhost:8888/json/%s.json";
 	List networksTemplate;
 	private static final String NETWORKS = "networks";
 
@@ -49,8 +57,7 @@ public class JustplayedServlet extends HttpServlet {
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)	throws IOException {
-		System.out.println(req.getPathInfo());
-		if ("/networks.json".equals(req.getPathInfo())) {
+		if ("/networks".equals(req.getPathInfo())) {
 			List<Map> networks;
 			if (cache.containsKey(NETWORKS)) {
 				networks = (List) cache.get(NETWORKS);
@@ -66,6 +73,31 @@ public class JustplayedServlet extends HttpServlet {
 			}
 			resp.setContentType("application/json");
 			resp.getWriter().println(JSONValue.toJSONString(networks));
+		} else if ("/preview".equals(req.getPathInfo())) {
+			URL url = new URL(req.getParameter("playlist"));
+			try {
+				String href = XPathFactory.newInstance().newXPath().evaluate("//connection/@href", DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(url.openStream()));
+				resp.sendRedirect(href);
+			} catch (Exception e) {
+				throw new IOException(e);
+			}
+		} else if ("/purchase".equals(req.getPathInfo())) {
+			String artist = req.getParameter("artist");
+			String title = req.getParameter("title");
+			URL url = new URL(String.format("http://api.7digital.com/1.2/track/search?q=%s&oauth_consumer_key=milkroundabout", URLEncoder.encode(title, "UTF8")));
+			try {
+				Document xml = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(url.openStream());
+				StringWriter writer = new StringWriter();
+				TransformerFactory.newInstance().newTransformer().transform(new DOMSource(xml), new StreamResult(writer));
+				String release = XPathFactory.newInstance().newXPath().evaluate(String.format("//track[artist/name/text()=\"%s\"][1]/release/@id", artist), xml);
+				if (!release.isEmpty()) {
+					resp.sendRedirect(String.format("http://m.7digital.com/GB/releases/%s", release));
+				} else {
+					resp.sendRedirect(String.format("http://m.7digital.com/GB/search/tracks?q=%s", URLEncoder.encode(title, "UTF8")));
+				}
+			} catch (Exception e) {
+				throw new IOException(e);
+			}
 		}
 	}
 }
