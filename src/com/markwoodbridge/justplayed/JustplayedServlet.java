@@ -77,8 +77,8 @@ public class JustplayedServlet extends HttpServlet {
 			resp.setContentType("application/json");
 			resp.getWriter().println(JSONValue.toJSONString(networks));
 		} else if ("/preview".equals(req.getPathInfo())) {
-			URL url = new URL(req.getParameter("playlist"));
 			try {
+				URL url = new URL(req.getParameter("playlist"));
 				String href = XPathFactory.newInstance().newXPath().evaluate("//connection/@href", DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(url.openStream()));
 				resp.sendRedirect(href);
 			} catch (Exception e) {
@@ -92,8 +92,8 @@ public class JustplayedServlet extends HttpServlet {
 			if (cache.containsKey(key)) {
 				target = (String) cache.get(key);
 			} else {
-				URL search = new URL(String.format("http://api.7digital.com/1.2/track/search?q=%s&oauth_consumer_key=milkroundabout", URLEncoder.encode(title, "UTF8")));
 				try {
+					URL search = new URL(String.format("http://api.7digital.com/1.2/track/search?q=%s&oauth_consumer_key=milkroundabout", URLEncoder.encode(title, "UTF8")));
 					Document xml = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(search.openStream());
 					StringWriter writer = new StringWriter();
 					TransformerFactory.newInstance().newTransformer().transform(new DOMSource(xml), new StreamResult(writer));
