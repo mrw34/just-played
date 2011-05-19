@@ -32,12 +32,9 @@ import com.google.appengine.api.memcache.stdimpl.GCacheFactory;
 
 @SuppressWarnings({"serial", "rawtypes", "unchecked"})
 public class JustplayedServlet extends HttpServlet {
-	private Cache cache;
-	String TEMPLATE = "http://www.bbc.co.uk/%s/nowplaying/latest.json";
-	//String TEMPLATE = "http://just-played.appspot.com/json/%s.json";
-	//String TEMPLATE = "http://localhost:8888/json/%s.json";
-	List networksTemplate;
 	private static final String NETWORKS = "networks";
+	private Cache cache;
+	private List networksTemplate;
 
 	@Override
 	public void init() throws ServletException {
@@ -56,6 +53,7 @@ public class JustplayedServlet extends HttpServlet {
 		}
 	}
 
+	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)	throws IOException {
 		if ("/networks".equals(req.getPathInfo())) {
 			List<Map> networks;
@@ -64,10 +62,15 @@ public class JustplayedServlet extends HttpServlet {
 			} else {
 				networks = networksTemplate;
 				for (Map network : networks) {
-					URL url = new URL(String.format(TEMPLATE, network.get("id")));
-					Map latest = (Map) JSONValue.parse(new InputStreamReader(url.openStream()));
+					URL nowplaying_url = new URL((String) network.get("nowplaying_url"));
+					Map latest = (Map) JSONValue.parse(new InputStreamReader(nowplaying_url.openStream()));
 					List nowplaying = latest.containsKey("nowplaying") ? (List) latest.get("nowplaying") : Collections.EMPTY_LIST;
 					network.put("nowplaying", nowplaying);
+					if (network.containsKey("onair_url")) {
+						URL onair_url = new URL((String) network.get("onair_url"));
+						Map onair = (Map) JSONValue.parse(new InputStreamReader(onair_url.openStream()));
+						network.put("onair", onair.containsKey("onair") ? (Map) onair.get("onair") : Collections.EMPTY_MAP);
+					}
 				}
 				cache.put(NETWORKS, networks);
 			}
@@ -84,20 +87,28 @@ public class JustplayedServlet extends HttpServlet {
 		} else if ("/purchase".equals(req.getPathInfo())) {
 			String artist = req.getParameter("artist");
 			String title = req.getParameter("title");
-			URL url = new URL(String.format("http://api.7digital.com/1.2/track/search?q=%s&oauth_consumer_key=milkroundabout", URLEncoder.encode(title, "UTF8")));
-			try {
-				Document xml = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(url.openStream());
-				StringWriter writer = new StringWriter();
-				TransformerFactory.newInstance().newTransformer().transform(new DOMSource(xml), new StreamResult(writer));
-				String release = XPathFactory.newInstance().newXPath().evaluate(String.format("//track[artist/name/text()=\"%s\"][1]/release/@id", artist), xml);
-				if (!release.isEmpty()) {
-					resp.sendRedirect(String.format("http://m.7digital.com/GB/releases/%s", release));
-				} else {
-					resp.sendRedirect(String.format("http://m.7digital.com/GB/search/tracks?q=%s", URLEncoder.encode(title, "UTF8")));
+			String target;
+			String key = artist + "^" + title;
+			if (cache.containsKey(key)) {
+				target = (String) cache.get(key);
+			} else {
+				URL search = new URL(String.format("http://api.7digital.com/1.2/track/search?q=%s&oauth_consumer_key=milkroundabout", URLEncoder.encode(title, "UTF8")));
+				try {
+					Document xml = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(search.openStream());
+					StringWriter writer = new StringWriter();
+					TransformerFactory.newInstance().newTransformer().transform(new DOMSource(xml), new StreamResult(writer));
+					String release = XPathFactory.newInstance().newXPath().evaluate(String.format("//track[artist/name/text()=\"%s\"][1]/release/@id", artist), xml);
+					if (!release.isEmpty()) {
+						target = String.format("http://m.7digital.com/GB/releases/%s", release);
+					} else {
+						target = String.format("http://m.7digital.com/GB/search/tracks?q=%s", URLEncoder.encode(title, "UTF8"));
+					}
+					cache.put(key, target);
+				} catch (Exception e) {
+					throw new IOException(e);
 				}
-			} catch (Exception e) {
-				throw new IOException(e);
 			}
+			resp.sendRedirect(target);
 		}
 	}
 }

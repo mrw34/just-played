@@ -28,6 +28,9 @@ $(function() {
           + '</li>');
       });
       $('#' + network.id + ' ul').html(tracks.join('')).listview();
+      if (network.onair) {
+        $('#' + network.id + ' .onair').html(": " + network.onair.title);
+      }
     });
     $('#home ul').html(networks.join('')).listview();
   });
@@ -51,7 +54,7 @@ $(function() {
   <div data-role="page" id="radio1" data-theme="b">
     <div data-role="header">
       <a href="home" data-icon="home" data-iconpos="notext" class="ui-btn-right">Home</a>
-      <h1>BBC Radio 1</h1>
+      <h1>BBC Radio 1<span class="onair"></span></h1>
     </div>
     <div data-role="content">
       <ul data-role='list-view'></ul>
@@ -90,6 +93,7 @@ $(function() {
     </div>
     <div data-role="content" data-theme="b">
       <p><b>Just Played</b> shows you the latest tracks played on the BBC's music radio stations
+      <p>Most recent tracks are shown at the top of the list
       <p>You can check whether the track is the one you wanted using the preview (where available) to the right of the track name
       <p>Click the track name to visit 7digital's site, where you can buy the track
     </div>
