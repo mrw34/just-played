@@ -4,234 +4,25 @@
         "title": "BBC Radio 1",
         "image": "/img/radio1.gif",
         "nowplaying_url": "http://www.bbc.co.uk/radio1/nowplaying/latest.json",
-        "onair_url": "http://www.bbc.co.uk/radio1/nowplaying/onair.json",
-        "nowplaying": [
-            {
-                "artist_gid": "b9472588-93f3-4922-a1a2-74082cdf9ce8",
-                "artist": "Panic! at the Disco",
-                "title": "The Ballad Of Mona Lisa",
-                "image": "http://www.bbc.co.uk/radio1/images/packshots/panicatthedisco-theballadofmonalisa.jpg",
-                "playlist": "http://www.bbc.co.uk/programmes/p00fhsvl.emp"
-            },
-            {
-                "artist_gid": "",
-                "artist": "Chris Brown and Benny Benassi",
-                "title": "Beautiful People"
-            },
-            {
-                "artist_gid": "312183e0-64ff-48df-a9f4-0804ca23a7d3",
-                "artist": "Jai Paul",
-                "title": "BTSTU",
-                "image": "http://www.bbc.co.uk/radio1/images/packshots/jaipaul-btstu.jpg",
-                "playlist": "http://www.bbc.co.uk/programmes/p00gqr97.emp"
-            },
-            {
-                "artist_gid": "6f1de078-6684-4792-820d-2ffad64c15ed",
-                "artist": "Two Door Cinema Club",
-                "title": "Something Good Can Work",
-                "playlist": "http://www.bbc.co.uk/programmes/p00fytjk.emp"
-            },
-            {
-                "artist_gid": "70e6fee5-36b1-4cdb-b573-2132f9566dad",
-                "artist": "Alexandra Stan",
-                "title": "Mr Saxobeat",
-                "image": "http://www.bbc.co.uk/radio1/images/packshots/alexandrastan-mrsaxobeat.jpg",
-                "playlist": "http://www.bbc.co.uk/programmes/p00gph0j.emp"
-            },
-            {
-                "artist_gid": "e3fb5bd1-0b1a-44c5-8523-da2cfef5d69f",
-                "artist": "Yasmin",
-                "title": "Finish Line",
-                "image": "http://www.bbc.co.uk/radio1/images/packshots/yasmin-finishline.jpg",
-                "playlist": "http://www.bbc.co.uk/programmes/p00dy22k.emp"
-            },
-            {
-                "artist_gid": "",
-                "artist": "Wretch 32 and Example",
-                "title": "Unorthodox"
-            },
-            {
-                "artist_gid": "",
-                "artist": "Jessie J and B.O.B.",
-                "title": "Price Tag"
-            }
-        ]
+        "onair_url": "http://www.bbc.co.uk/radio1/nowplaying/onair.json"
     },
     {
         "id": "1xtra",
         "title": "BBC Radio 1Xtra",
         "image": "/img/1xtra.gif",
         "nowplaying_url": "http://www.bbc.co.uk/1xtra/nowplaying/latest.json",
-        "onair_url": "http://www.bbc.co.uk/1xtra/nowplaying/onair.json",
-        "nowplaying": [
-            {
-                "artist_gid": "",
-                "artist": "Mavado, ChipMunk and Sneakbo",
-                "title": "Starboy (Remix)"
-            },
-            {
-                "artist_gid": "f90e8b26-9e52-4669-a5c9-e28529c47894",
-                "artist": "Snoop Dogg",
-                "title": "Sweat",
-                "playlist": "http://www.bbc.co.uk/programmes/p00fm9wk.emp"
-            },
-            {
-                "artist_gid": "",
-                "artist": "Wiley",
-                "title": "Numbers In Action"
-            },
-            {
-                "artist_gid": "",
-                "artist": "The Game and Lil Wayne",
-                "title": "Red Nation"
-            },
-            {
-                "artist_gid": "285e1285-aecc-478f-a8da-0c8cf69e1217",
-                "artist": "Miguel",
-                "title": "Sure Thing",
-                "playlist": "http://www.bbc.co.uk/programmes/p00gpfgb.emp"
-            },
-            {
-                "artist_gid": "",
-                "artist": "Tinie Tempah and Wiz Kalifa",
-                "title": "Til I'm Gone"
-            },
-            {
-                "artist_gid": "f21a407e-3af9-4539-ab3d-c92a5230dff6",
-                "artist": "Lethal B",
-                "title": "Mind Spinning",
-                "playlist": "http://www.bbc.co.uk/programmes/p00gx3l9.emp"
-            },
-            {
-                "artist_gid": "13bcb2bb-db37-4397-baf5-e0f085be2d64",
-                "artist": "Rick Ross",
-                "title": "John Doe",
-                "playlist": "http://www.bbc.co.uk/programmes/p00ft4xx.emp"
-            },
-            {
-                "artist_gid": "",
-                "artist": "Gaza Slim",
-                "title": "One Man"
-            }
-        ]
+        "onair_url": "http://www.bbc.co.uk/1xtra/nowplaying/onair.json"
     },
     {
         "id": "radio2",
         "title": "BBC Radio 2",
         "image": "/img/radio2.gif",
-        "nowplaying_url": "http://www.bbc.co.uk/radio2/nowplaying/latest.json",
-        "nowplaying": [
-            {
-                "artist_gid": "b9472588-93f3-4922-a1a2-74082cdf9ce8",
-                "artist": "Panic! at the Disco",
-                "title": "The Ballad Of Mona Lisa",
-                "image": "http://www.bbc.co.uk/radio1/images/packshots/panicatthedisco-theballadofmonalisa.jpg",
-                "playlist": "http://www.bbc.co.uk/programmes/p00fhsvl.emp"
-            },
-            {
-                "artist_gid": "",
-                "artist": "Chris Brown and Benny Benassi",
-                "title": "Beautiful People"
-            },
-            {
-                "artist_gid": "312183e0-64ff-48df-a9f4-0804ca23a7d3",
-                "artist": "Jai Paul",
-                "title": "BTSTU",
-                "image": "http://www.bbc.co.uk/radio1/images/packshots/jaipaul-btstu.jpg",
-                "playlist": "http://www.bbc.co.uk/programmes/p00gqr97.emp"
-            },
-            {
-                "artist_gid": "6f1de078-6684-4792-820d-2ffad64c15ed",
-                "artist": "Two Door Cinema Club",
-                "title": "Something Good Can Work",
-                "playlist": "http://www.bbc.co.uk/programmes/p00fytjk.emp"
-            },
-            {
-                "artist_gid": "70e6fee5-36b1-4cdb-b573-2132f9566dad",
-                "artist": "Alexandra Stan",
-                "title": "Mr Saxobeat",
-                "image": "http://www.bbc.co.uk/radio1/images/packshots/alexandrastan-mrsaxobeat.jpg",
-                "playlist": "http://www.bbc.co.uk/programmes/p00gph0j.emp"
-            },
-            {
-                "artist_gid": "e3fb5bd1-0b1a-44c5-8523-da2cfef5d69f",
-                "artist": "Yasmin",
-                "title": "Finish Line",
-                "image": "http://www.bbc.co.uk/radio1/images/packshots/yasmin-finishline.jpg",
-                "playlist": "http://www.bbc.co.uk/programmes/p00dy22k.emp"
-            },
-            {
-                "artist_gid": "",
-                "artist": "Wretch 32 and Example",
-                "title": "Unorthodox"
-            },
-            {
-                "artist_gid": "",
-                "artist": "Jessie J and B.O.B.",
-                "title": "Price Tag"
-            }
-        ]
+        "nowplaying_url": "http://www.bbc.co.uk/radio2/nowplaying/latest.json"
     },
     {
         "id": "6music",
         "title": "BBC 6 Music",
         "image": "/img/6music.gif",
-        "nowplaying_url": "http://www.bbc.co.uk/6music/nowplaying/latest.json",
-        "nowplaying": [
-            {
-                "artist_gid": "ef11dd9b-4557-4fc5-b0e2-a431c5cfddbb",
-                "artist": "Earl Hooker",
-                "title": "Dynamite"
-            },
-            {
-                "artist_gid": "fe98e268-4ddd-441b-95a0-b219375f9ae4",
-                "artist": "The Mothers of Invention",
-                "title": "Valarie"
-            },
-            {
-                "artist_gid": "f50a96b5-a890-4442-ae30-6ce307dd7e20",
-                "artist": "The Walkabouts",
-                "title": "Feel Like Going Home"
-            },
-            {
-                "artist_gid": "09d878d8-bc2e-4d04-b4aa-57ab614f93ab",
-                "artist": "Julian Cope",
-                "title": "Pulsar"
-            },
-            {
-                "artist_gid": "62fa3eb2-1b73-4029-ba35-16ab66d29d02",
-                "artist": "North Mississippi Allstars",
-                "title": "The Meeting",
-                "isrc": "USNZQ1100003"
-            },
-            {
-                "artist_gid": "b23e8a63-8f47-4882-b55b-df2c92ef400e",
-                "artist": "Interpol",
-                "title": "Hands Away - BBC Session 18/04/2001"
-            },
-            {
-                "artist_gid": "",
-                "artist": "Mama Rosin and Hipbone Slim",
-                "title": "Quel Espoir"
-            },
-            {
-                "artist_gid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
-                "artist": "R.E.M.",
-                "title": "Gardening At Night   Rock City Nottingham 1984"
-            },
-            {
-                "artist_gid": "0b161186-b1d7-4a3b-b982-038d4bc18bb6",
-                "artist": "Africa HiTech",
-                "title": "Cyclic Sun",
-                "playlist": "http://www.bbc.co.uk/programmes/p00ggz08.emp",
-                "isrc": "GBBPW1100075"
-            },
-            {
-                "artist_gid": "b7ca7429-4ffb-4528-8e7e-6d6b8bd20770",
-                "artist": "Kitty, Daisy &amp; Lewis",
-                "title": "Messing with my Life",
-                "playlist": "http://www.bbc.co.uk/programmes/p00gvv9w.emp"
-            }
-        ]
+        "nowplaying_url": "http://www.bbc.co.uk/6music/nowplaying/latest.json"
     }
 ]
