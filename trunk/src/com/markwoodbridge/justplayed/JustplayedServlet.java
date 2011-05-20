@@ -95,7 +95,7 @@ public class JustplayedServlet extends HttpServlet {
 				target = (String) cache.get(key);
 			} else {
 				try {
-					Document doc = builder.build(String.format("http://api.7digital.com/1.2/track/search?q=%s&oauth_consumer_key=milkroundabout", URLEncoder.encode(title, "UTF8")));
+					Document doc = builder.build(String.format("http://api.7digital.com/1.2/track/search?q=%s&oauth_consumer_key=%s", URLEncoder.encode(title, "UTF8"), System.getProperty("7digital.oauth_consumer_key")));
 					Nodes tracks = doc.query("//track");
 					String release = null;
 					for (int i = 0; i < tracks.size(); i++) {
