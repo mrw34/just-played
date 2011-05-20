@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <title>Just Played</title>
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css" />
+<style>
+  .ui-icon-justplayed-preview {
+  	background-image: url('img/music.png');
+  }
+</style>
 <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
 <script>
@@ -23,7 +28,7 @@ $(function() {
           + '<h1>' + track.title + '</h1>'
           + '<p>' + track.artist + '</p>'
           + '</a>'
-          + (track.playlist ? ('<a href="justplayed/preview?playlist=' + encodeURIComponent(track.playlist) + '" data-ajax="false">Preview track</a>') : '')
+          + (track.playlist ? ('<a href="justplayed/preview?playlist=' + encodeURIComponent(track.playlist) + '" data-ajax="false" data-icon="justplayed-preview">Preview track</a>') : '')
           + '</li>');
       });
       $('#' + network.id + ' ul').html(tracks.join('')).listview();
@@ -57,8 +62,8 @@ $(function() {
     <div data-role="content" data-theme="b">
       <p><b>Just Played</b> shows you the latest tracks played on the BBC's music radio stations
       <p>Most recent tracks are shown at the top of the list
-      <p>You can preview the track (where available) by tapping the arrow to the right of the track name
-      <p>Tap the track name to visit 7digital's site, where you should be able to buy the track
+      <p>You can preview the track (where available) by tapping the icon to the right of the track name
+      <p>Tap the track name to visit the 7digital store and buy the track
     </div>
   </div>
   <div data-role="page" id="radio1" data-theme="b">
