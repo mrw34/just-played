@@ -31,10 +31,8 @@ $(function() {
           + (track.playlist ? ('<a href="justplayed/preview?playlist=' + encodeURIComponent(track.playlist) + '" data-ajax="false" data-icon="justplayed-preview">Preview track</a>') : '')
           + '</li>');
       });
+      $('#' + network.id + ' h2').html(network.title + (network.onair ? (': ' + network.onair.title) : ''));
       $('#' + network.id + ' ul').html(tracks.join('')).listview();
-      if (network.onair) {
-        $('#' + network.id + ' .onair').html(": " + network.onair.title);
-      }
     });
     $('#home ul').html(networks.join('')).listview();
   });
@@ -49,11 +47,6 @@ $(function() {
     <div data-role="content">
       <ul id="networks" data-role='list-view' data-inset='true'></ul>
     </div>
-    <!--
-    <div data-role="footer">
-      <h4>Page Footer</h4>
-    </div>
-    -->
   </div>
   <div data-role="page" id="help">
     <div data-role="header" data-theme="b">
@@ -69,7 +62,7 @@ $(function() {
   <div data-role="page" id="radio1" data-theme="b">
     <div data-role="header">
       <a href="home" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
-      <h2>BBC Radio 1<span class="onair"></span></h2>
+      <h2><span class="onair"></span></h2>
     </div>
     <div data-role="content">
       <ul data-role='list-view'></ul>
@@ -78,7 +71,7 @@ $(function() {
   <div data-role="page" id="1xtra" data-theme="b">
     <div data-role="header">
       <a href="home" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
-      <h2>BBC Radio 1Xtra<span class="onair"></span></h2>
+      <h2><span class="onair"></span></h2>
     </div>
     <div data-role="content">
       <ul data-role='list-view'></ul>
@@ -87,7 +80,7 @@ $(function() {
   <div data-role="page" id="radio2" data-theme="b">
     <div data-role="header">
       <a href="home" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
-      <h2>BBC Radio 2<span class="onair"></span></h2>
+      <h2><span class="onair"></span></h2>
     </div>
     <div data-role="content">
       <ul data-role='list-view'></ul>
@@ -96,7 +89,7 @@ $(function() {
   <div data-role="page" id="6music" data-theme="b">
     <div data-role="header">
       <a href="home" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-right jqm-home">Home</a>
-      <h2>BBC 6 Music<span class="onair"></span></h2>
+      <h2></h2>
     </div>
     <div data-role="content">
       <ul data-role='list-view'></ul>
