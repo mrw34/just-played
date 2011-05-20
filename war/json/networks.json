@@ -2,27 +2,27 @@
     {
         "id": "radio1",
         "title": "BBC Radio 1",
-        "image": "/img/radio1.gif",
+        "image": "img/radio1.gif",
         "nowplaying_url": "http://www.bbc.co.uk/radio1/nowplaying/latest.json",
         "onair_url": "http://www.bbc.co.uk/radio1/nowplaying/onair.json"
     },
     {
         "id": "1xtra",
         "title": "BBC Radio 1Xtra",
-        "image": "/img/1xtra.gif",
+        "image": "img/1xtra.gif",
         "nowplaying_url": "http://www.bbc.co.uk/1xtra/nowplaying/latest.json",
         "onair_url": "http://www.bbc.co.uk/1xtra/nowplaying/onair.json"
     },
     {
         "id": "radio2",
         "title": "BBC Radio 2",
-        "image": "/img/radio2.gif",
+        "image": "img/radio2.gif",
         "nowplaying_url": "http://www.bbc.co.uk/radio2/nowplaying/latest.json"
     },
     {
         "id": "6music",
         "title": "BBC 6 Music",
-        "image": "/img/6music.gif",
+        "image": "img/6music.gif",
         "nowplaying_url": "http://www.bbc.co.uk/6music/nowplaying/latest.json"
     }
 ]
