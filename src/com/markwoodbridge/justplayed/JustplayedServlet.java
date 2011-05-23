@@ -77,7 +77,7 @@ public class JustplayedServlet extends HttpServlet {
 				cache.put(NETWORKS, networks);
 			}
 			resp.setContentType("application/json");
-			resp.getWriter().println(JSONValue.toJSONString(networks));
+			JSONValue.writeJSONString(networks, resp.getWriter());
 		} else if ("/preview".equals(req.getPathInfo())) {
 			try {
 				URL url = new URL(req.getParameter("playlist"));
