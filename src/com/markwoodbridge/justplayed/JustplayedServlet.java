@@ -11,9 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.cache.Cache;
-import javax.cache.CacheException;
-import javax.cache.CacheManager;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPathFactory;
 
+import net.sf.jsr107cache.Cache;
+import net.sf.jsr107cache.CacheException;
+import net.sf.jsr107cache.CacheManager;
 import nu.xom.Builder;
 import nu.xom.Document;
 import nu.xom.Node;
@@ -28,7 +28,7 @@ import nu.xom.Nodes;
 
 import org.json.simple.JSONValue;
 
-import com.google.appengine.api.memcache.stdimpl.GCacheFactory;
+import com.google.appengine.api.memcache.jsr107cache.GCacheFactory;
 
 @SuppressWarnings({"serial", "rawtypes", "unchecked"})
 public class JustplayedServlet extends HttpServlet {
